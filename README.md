@@ -42,7 +42,7 @@ Untuk melakukan kontribusi ikuti langkah berikut:
 
 ```console
 // Penamaan branch
-<branch-type>_<branch-name>
+<nama>
 Contoh: arbani
 
 // Membuat branch
