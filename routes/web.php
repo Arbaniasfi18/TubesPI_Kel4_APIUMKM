@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\HTTP\Controllers\ApiController;
+use App\Http\Controllers\authController\LoginController;
+use App\Http\Controllers\authController\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::controller(ApiController::class)->group(function () {
+    Route::get('/test', 'Test')->name('test');
+    Route::get('/test/{id}', 'getId');
+});
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
