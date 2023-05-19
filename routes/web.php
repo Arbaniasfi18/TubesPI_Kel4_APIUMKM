@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\HTTP\Controllers\ApiController;
 use App\Http\Controllers\authController\LoginController;
 use App\Http\Controllers\authController\RegisterController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(ApiController::class)->group(function () {
+Route::middleware('auth')->controller(ApiController::class)->group(function () {
     Route::get('/test', 'Test')->name('test');
     Route::get('/test/{id}', 'getId');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::prefix('login')->controller(LoginController::class)->group(function(){
+    Route::get('/', 'index')->name('login');
+    Route::post('/post', 'create')->name('login.post');
+});
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
+
+Route::prefix('register')->controller(RegisterController::class)->group(function(){
+    Route::get('/', 'index')->name('register');
+    Route::post('/post', 'create')->name('register.post');
+});
+
+Route::get('/logout', function(){
+    Auth::logout();
+});

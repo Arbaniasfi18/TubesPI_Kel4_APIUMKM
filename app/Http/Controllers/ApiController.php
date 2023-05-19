@@ -8,9 +8,12 @@ use App\Http\Resources\getResource;
 
 class ApiController extends Controller
 {
-    public function Test()
+    public function Test(Request $request)
     {
         $data = getResource::collection(Umkm::all());
+
+        dd($request->session()->all());
+        // dd($request->session()->has('users'));
 
         if($data != Null){
             $response = array(
