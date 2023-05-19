@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[App\Http\Controllers\HomeController::class,'home'])->name('home');
+Route::get('/Tentang',[App\Http\Controllers\HomeController::class,'tentang'])->name('tentang');
+Route::get('/Statistik',[App\Http\Controllers\HomeController::class,'statistik'])->name('statistik');
+Route::get('/Database-UMKM',[App\Http\Controllers\HomeController::class,'database_umkm'])->name('database');
+Route::get('/Data-UMKM',[App\Http\Controllers\HomeController::class,'data_umkn'])->name('data_umkm');
