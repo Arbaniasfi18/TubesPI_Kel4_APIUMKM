@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Umkm;
 use App\Http\Resources\getResource;
+use Illuminate\Support\Str;
+use App\Models\Token;
 
 class ApiController extends Controller
 {
@@ -12,7 +14,6 @@ class ApiController extends Controller
     {
         $data = getResource::collection(Umkm::all());
 
-        dd($request->session()->all());
         // dd($request->session()->has('users'));
 
         if($data != Null){
@@ -45,9 +46,36 @@ class ApiController extends Controller
         return abort(404);
     }
 
-    public function createToken()
+    public function createToken(Request $request)
     {
-        
+        $check_token = Token::where([
+            ['user_id', '=', auth()->user()->id],
+            ['end_date', '>', \Carbon\Carbon::now()],
+        ])->first();
+
+        $next_month = \Carbon\Carbon::now()->addMonth();
+
+        if(!empty($check_token))
+        {
+            return view('auth', [
+                'token' => $check_token->token,
+                'page_name' => 'Token'
+            ]);
+        }
+        else 
+        {
+            $token = Str::random(20);
+            $data = [
+                'user_id' => auth()->user()->id,
+                'token' => $token,
+                'end_date' => $next_month,
+            ];
+            Token::create($data);
+        }
+        return view('auth', [
+            'token' => $token,
+            'page_name' => 'Token'
+        ]);
     }
 
 

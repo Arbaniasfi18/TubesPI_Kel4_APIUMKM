@@ -28,6 +28,8 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect('/get/token');
+        }else {
+            return redirect()->back()->with('error', 'Username atau password anda salah');
         }
         return redirect()->back()->with('error', 'Akun anda belum terdaftar');
     }
