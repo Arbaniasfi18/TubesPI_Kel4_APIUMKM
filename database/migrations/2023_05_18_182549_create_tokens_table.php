@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('token');
-            $table->integer('using_left')->default(10);
+            $table->timestamp('end_date');
             $table->timestamps();
         });
     }

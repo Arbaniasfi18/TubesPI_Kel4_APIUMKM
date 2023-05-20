@@ -26,7 +26,7 @@ class RegisterController extends Controller
         ];
         User::create($data);
 
-        return redirect('/login'); 
+        return redirect('/login')->with('sucess', 'Akun anda berhasil terdaftar silahkan login'); 
     }
 
 }

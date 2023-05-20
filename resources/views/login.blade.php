@@ -2,6 +2,18 @@
    <div class="title">
       Login Form
    </div>
+
+   @if(\Session::has('success'))
+      <div class="alert alert-success">
+            <h6>{!! \Session::get('success') !!}</h6>
+      </div>
+   @endif
+   @if(\Session::has('error'))
+      <div class="alert alert-danger">
+            <h6>{!! \Session::get('error') !!}</h6>
+      </div>
+   @endif
+   
    <form action="{{ url('/login/post') }}" method="POST">
       @csrf
       <div class="field">

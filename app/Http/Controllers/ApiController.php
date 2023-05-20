@@ -45,5 +45,10 @@ class ApiController extends Controller
         return abort(404);
     }
 
+    public function createToken()
+    {
+        
+    }
+
 
 }

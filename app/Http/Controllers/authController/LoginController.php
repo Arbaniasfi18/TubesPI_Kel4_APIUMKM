@@ -27,10 +27,9 @@ class LoginController extends Controller
         {
             $request->session()->regenerate();
 
-            return redirect('/test');
+            return redirect('/get/token');
         }
-
-        return 0;
+        return redirect()->back()->with('error', 'Akun anda belum terdaftar');
     }
 
 }
