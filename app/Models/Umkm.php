@@ -27,4 +27,9 @@ class Umkm extends Model
         return $this->belongsTo(ContactPerson::class, 'contact_id');
     }
 
+    public function category() : BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
 }

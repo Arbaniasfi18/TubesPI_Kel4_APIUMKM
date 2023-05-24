@@ -27,6 +27,15 @@ Route::middleware('auth')->controller(ApiController::class)->group(function () {
     Route::get('/get/token', 'createToken');
 });
 
+
+Route::controller(ApiController::class)->group(function(){
+    Route::get('/{token}/umkm', 'getAll');
+    Route::get('/{token}/umkm/id/{id}', 'getId');
+    Route::get('/{token}/umkm/category/{category}', 'getCategory');
+    Route::get('/{token}/umkm/kecamatan/{kecamatan}', 'umkmInKecamatan');
+    Route::get('/{token}/kecamatan', 'allKecamatan');
+});
+
 Route::prefix('login')->controller(LoginController::class)->group(function(){
     Route::get('/', 'index')->name('login');
     Route::post('/post', 'create')->name('login.post');

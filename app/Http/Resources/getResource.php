@@ -27,7 +27,7 @@ class getResource extends JsonResource
             'id' => $data->id,
             'nama_usaha' => $data->nama_usaha,
             'logo_usaha' => $data->logo_usaha,
-            'kategori_umkm' => $data->kategori_umkm,
+            'kategori_umkm' => $data->category->category,
             'deskripsi' => $data->deskripsi,
             'nama_pemilik' => $data->nama_pemilik, 
             'validitas_sertif_umkm' => $data->validitas_sertif_umkm,

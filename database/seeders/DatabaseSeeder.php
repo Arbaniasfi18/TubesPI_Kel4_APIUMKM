@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             KotaSeeder::class,
             KecamatanSeeder::class,
             ContactSeeder::class,
+            CategorySeeder::class,
             UmkmSeeder::class,
             ProductSeeder::class,
          ]);

@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama_usaha');
             $table->string('logo_usaha');
-            $table->string('kategori_umkm');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->string('deskripsi');
             $table->string('nama_pemilik');
             $table->string('validitas_sertif_umkm');
