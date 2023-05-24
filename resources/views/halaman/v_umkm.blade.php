@@ -5,33 +5,29 @@
   <div class="container">
     <div class="card border-0">
         <div class="card-header text-white">
-            Dapur Mas Agung
+            {{ $umkm->nama_usaha }}
         </div>
 
         <div class="card-body">
             <div class="row mt-3 ms-1 mb-3">
                 <div class="col-md-4">
-                        <img src="assets/img/1.jpg" class="img-thumbnail">
+                        <img src="{{ $umkm->logo_usaha }}" class="img-thumbnail">
                 </div>
                 <div class="col-md-7 ms-3">
                     <div class="row">
-                        <h3 id="judul"><b>DAPUR MAS AGUNG</b></h3>
+                        <h3 id="judul"><b>{{ $umkm->nama_usaha }}</b></h3>
                     </div>
                     <div class="row">
-                        <p>Makanan</p>
+                        @if ($umkm->kategori_umkm == "Pangan")
+                            <p>Makanan</p>
+                        @elseif($umkm->kategori_umkm == "Sandang")
+                            <p>Pakaian</p>
+                        @else
+                            <p>Perabotan</p>
+                        @endif
                     </div>
                     <div class="row">
-                        <p id="keterangan">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, consequuntur temporibus 
-                        iure nam error quidem porro, accusamus totam, consequatur nobis eum optio fugiat ad! 
-                        Officiis optio eligendi assumenda quisquam dicta.</p>
-
-                        <p id="keterangan">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, consequuntur temporibus 
-                        iure nam error quidem porro, accusamus totam, consequatur nobis eum optio fugiat ad! 
-                        Officiis optio eligendi assumenda quisquam dicta.</p>
-
-                        <p id="keterangan">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos, consequuntur temporibus 
-                        iure nam error quidem porro, accusamus totam, consequatur nobis eum optio fugiat ad! 
-                        Officiis optio eligendi assumenda quisquam dicta.</p>
+                        <p id="keterangan">{{ $umkm->deskripsi }}</p>
                     </div>
                 </div>
             </div> 
@@ -83,7 +79,7 @@
                     <div class="card" id="info">
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-geo-alt me-2"></i>Lokasi</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                        <p class="card-text">{{ $umkm->alamat_usaha }}</p>
                     </div>
                     </div>
                 </div>
@@ -91,7 +87,7 @@
                     <div class="card" id="info">
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-person-lines-fill me-2"></i>Contact</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                        <p class="card-text">{{ $umkm->contact_person->no_telp }}</p>
                     </div>
                     </div>
                 </div>

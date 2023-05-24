@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',[App\Http\Controllers\HomeController::class,'home'])->name('home');
-Route::get('/Tentang',[App\Http\Controllers\HomeController::class,'tentang'])->name('tentang');
-Route::get('/Statistik',[App\Http\Controllers\HomeController::class,'statistik'])->name('statistik');
-Route::get('/Database-UMKM',[App\Http\Controllers\HomeController::class,'database_umkm'])->name('database');
-Route::get('/Data-UMKM',[App\Http\Controllers\HomeController::class,'data_umkn'])->name('data_umkm');
+
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/', 'home')->name('home');
+    Route::get('/tentang', 'tentang')->name('tentang');
+    Route::get('/statistik/{kecamatan}', 'statistik')->name('statistik');
+    Route::get('/database-umkm', 'database_umkm')->name('database');
+    Route::get('/data-umkm/{id}', 'data_umkn')->name('data_umkm');
+});

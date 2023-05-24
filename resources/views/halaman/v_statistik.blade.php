@@ -2,25 +2,46 @@
 
 @section('content')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
 <section>
   <div class="container mt-5">
     <div class="card">
-        <div class="card-header text-white">
-            Medan Johor
-        </div>
+        @if (isset($kecamatan))
+            <div class="card-header text-white">
+                {{ $kecamatan }}
+            </div>
+        @else
+            <div class="card-header text-white">
+                Medan Johor
+            </div>
+        @endif
         <div class="card-body">
             <div class="row">
-                <div class="card-title col-md-6">
-                    <h1>54</h1>
-                    <p>Jumlah data UMKM di kecamatan Medan Johor</p>
-                    <p><a style="color:#58C477">GREEN BAR</a></br>Kategori Sandang</p>
-                    <p><a style="color:#FCB52B">ORANGE BAR</a></br>Kategori Pangam</p>
-                    <p><a style="color:#43B9C0">BLUE BAR</a></br>Kategori Papan</p>
-                </div>
-                    <div class="col-md-6">
-                    <canvas id="bar-chart" width="800" height="450"></canvas>
+                @if (isset($data_kecamatan))
+                    <div class="card-title col-md-6">
+                        <h1>{{ count($data_kecamatan) }}</h1>
+                        <p>Jumlah data UMKM di kecamatan {{ $kecamatan }}</p>
+                        <p><a style="color:#58C477">GREEN BAR</a></br>Kategori Sandang</p>
+                        <p><a style="color:#FCB52B">ORANGE BAR</a></br>Kategori Pangam</p>
+                        <p><a style="color:#43B9C0">BLUE BAR</a></br>Kategori Papan</p>
                     </div>
-                </div>
+                        <div class="col-md-6">
+                            <canvas id="bar-chart" width="800" height="450"></canvas>
+                        </div>
+                    </div>
+                @else
+                    <div class="card-title col-md-6">
+                        <h1>0</h1>
+                        <p>Jumlah data UMKM di kecamatan {{ $kecamatan }}</p>
+                        <p><a style="color:#58C477">GREEN BAR</a></br>Kategori Sandang</p>
+                        <p><a style="color:#FCB52B">ORANGE BAR</a></br>Kategori Pangam</p>
+                        <p><a style="color:#43B9C0">BLUE BAR</a></br>Kategori Papan</p>
+                    </div>
+                        <div class="col-md-6">
+                            <canvas id="bar-chart" width="800" height="450"></canvas>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -57,14 +78,27 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td onClick="top.location.href='{{ route('data_umkm') }}'">1</td>
-                <td onClick="top.location.href='{{ route('data_umkm') }}'">Collection</td>
-                <td onClick="top.location.href='{{ route('data_umkm') }}'">Papan</td>
-                <td onClick="top.location.href='{{ route('data_umkm') }}'">1</td>
-                <td onClick="top.location.href='{{ route('data_umkm') }}'">Jl. Sei Bekala No. 12</td>
-                <td onClick="top.location.href='{{ route('data_umkm') }}'">Validitas Sertifikat</td>
-            </tr>
+            @if (isset($data_kecamatan))
+                @foreach ($data_kecamatan as $data)
+                    <tr>
+                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->id }}</td>
+                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->nama_usaha }}</td>
+                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->kategori_umkm }}</td>
+                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ 3 }}</td>
+                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->alamat_usaha }}</td>
+                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->validitas_sertif_umkm }}</td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td>1</td>
+                    <td>No data</td>
+                    <td>No data</td>
+                    <td>No data</td>
+                    <td>No data</td>
+                    <td>No data</td>
+                </tr>
+            @endif
         </tbody>
         <tfoot>
             <tr>
@@ -81,10 +115,10 @@
   </div>
 </section>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script><script  src="./script.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script><script  src="{{ asset('') }}"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
   <script>
         $(document).ready(function () {
@@ -101,7 +135,10 @@ new Chart(document.getElementById("bar-chart"), {
         {
           label: "Jumlah UMKM",
           backgroundColor: ["#58C477", "#FCB52B","#43B9C0"],
-          data: [19,39,20]
+          data: [
+            {{ $sandang }},
+            {{ $pangan }},
+            {{ $papan }}]
         }
       ]
     },

@@ -12,7 +12,11 @@
         </div>
         <div class="col-md-4">
           <a class="card text-center">
-            <h3>1400</h3>
+            @if(isset($total_umkm))
+              <h3>{{ $total_umkm }}</h3>
+            @else
+              <h3>1400</h3>
+            @endif
             <p>UMKM Terdata</p>
           </a>
         </div>

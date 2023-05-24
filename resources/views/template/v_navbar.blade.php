@@ -10,32 +10,63 @@
 
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.0/css/swiper.css'><link rel="stylesheet" href="./style.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.0/css/swiper.css'><link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+    .dropdown-menu {
+        max-height: 480px;
+        overflow-y: auto;
+    }
+  </style>
 
 
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
 </head>
 
 <body>
-
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="{{route('home')}}">UMKMstats</a></h1>
+      <h1 class="logo"><a href="{{route('home')}}">UMKMstats Medan</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link"  href="{{route('home')}}">Beranda</a></li>
-          <li> <a class="nav-link "  href="{{route('statistik')}}"><span>Statistik</span> <i class="bi bi-chevron-down"></i></a></li>
+          <li>
+            <div class="dropdown show">
+              <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Statistik
+              </a>
+            
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                @if (isset($daftar_kecamatan))
+                  @foreach ($daftar_kecamatan as $kecamatan)
+                    @php
+                      $lowercase = strtolower($kecamatan->kecamatan);
+                      $explode = explode(' ', $lowercase);
+                      $slug = implode('-', $explode);
+                    @endphp
+                    <a class="dropdown-item text-dark" href="{{ url('statistik', ['kecamatan' => $slug]) }}">{{ $kecamatan->kecamatan }}</a>
+                  @endforeach
+
+                @else
+                  <a class="dropdown-item text-dark" href="#">Tidak ada data kecamatan</a>
+                @endif
+              </div>
+            </div>
+          </li>
+          {{-- <li> <a class="nav-link "  href="{{route('statistik')}}"><span>Statistik</span> <i class="bi bi-chevron-down"></i></a></li> --}}
           <li><a class="nav-link"  href="{{route('tentang')}}">Tentang Kami</a></li>
           <!-- <li><a class="nav-link "  href="{{route('database')}}">Database UMKM</a></li> -->
         </ul>
@@ -48,17 +79,32 @@
  @yield('content')
 
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  <div id="preloader"></div>
+  {{-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div> --}}
 
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
-  <script src="assets/js/main.js"></script>
+  <script>
+    $('#dropdownMenuLink').click(function () {
+      if($('.dropdown-menu').hasClass('show'))
+      {
+        $('.dropdown-menu').removeClass('show');
+      }
+      else
+      {
+        $('.dropdown-menu').addClass('show');
+      }
+    });
+  </script>
+
+
+
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>
