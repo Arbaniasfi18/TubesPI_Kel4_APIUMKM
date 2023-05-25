@@ -40,26 +40,21 @@
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <!-- 1 -->
-                        <div class="swiper-slide">
-                        <div class="image-container">
-                            <img id="produk" src="assets/img/1.jpg">
-                        </div>
-                        </div>
-                        <div class="swiper-slide">
-                        <div class="image-container">
-                            <img id="produk" src="assets/img/1.jpg">
-                        </div>
-                        </div>
-                        <div class="swiper-slide">
-                        <div class="image-container">
-                            <img id="produk" src="assets/img/1.jpg">
-                        </div>
-                        </div>
-                        <div class="swiper-slide">
-                        <div class="image-container">
-                            <img id="produk" src="assets/img/1.jpg">
-                        </div>
-                        </div>
+                        @if ($umkm->produk)
+                            @foreach ($umkm->produk as $produk)
+                                <div class="swiper-slide" style="margin-left: 20px;">
+                                    <div class="image-container">
+                                        <img id="produk" src="{{ $produk->gambar_produk }}">
+                                    </div>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <p>No Product</p>
+                                </div>
+                            </div>
+                        @endif
                        
                     </div>
                     <div class="navigation-pagination-wrapper">

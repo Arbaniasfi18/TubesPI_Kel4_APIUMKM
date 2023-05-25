@@ -70,7 +70,7 @@
 
 
                 </tbody>
-                <tfoot>
+                {{-- <tfoot>
                     <tr>
                         <th>NO</th>
                         <th>Nama Kecamatan</th>
@@ -78,14 +78,14 @@
                         <th>Pangan</th>
                         <th>Papan</th>
                     </tr>
-                </tfoot>
+                </tfoot> --}}
             </table>
         </div>
 
   </div>
 </section>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script><script  src="./script.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js'></script><script  src=""></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
@@ -97,14 +97,60 @@
   </script>
 
 <script>
+
 new Chart(document.getElementById("bar-chart"), {
     type: 'bar',
     data: {
-      labels: ["Medan Tuntungan", "Medan Johor", "Medan Amplas","Medan Denai","Medan Area","Medan Kota","Medan Maimun","Medan Polonia","Medan Baru","Medan Selayang","Medan Sunggal","Medan Helvetia","Medan Petisah"],
+      labels: [
+      "Medan Amplas", 
+      "Medan Area", 
+      "Medan Barat",
+      "Medan Baru",
+      "Medan Belawan",
+      "Medan Deli",
+      "Medan Denai",
+      "Medan Helvetia",
+      "Medan Johor",
+      "Medan Kota",
+      "Medan Labuhan",
+      "Medan Maimun",
+      "Medan Marelan", 
+      "Medan Perjuangan",
+      "Medan Petisah",
+      "Medan Polonia",
+      "Medan Selayang",
+      "Medan Sunggal",
+      "Medan Tembung",
+      "Medan Timur",
+      "Medan Tuntungan" 
+    ],
       datasets: [
         {
           label: "Jumlah UMKM",
-          backgroundColor: ["#58C477", "#FCB52B","#43B9C0","#0000FF","#8A2BE2","#A52A2A","#DEB887","#5F9EA0","#7FFF00","#D2691E","#FF7F50","#DC143C","#00FFFF","#008B8B","#B8860B","#556B2F","#8FBC8F","#483D8B","#F08080","#90EE90","#FFA07A","#20B2AA"],
+          backgroundColor: [
+            "#58C477", 
+            "#FCB52B",
+            "#43B9C0",
+            "#0000FF",
+            "#8A2BE2",
+            "#A52A2A",
+            "#DEB887",
+            "#5F9EA0",
+            "#7FFF00",
+            "#D2691E",
+            "#FF7F50",
+            "#DC143C",
+            "#00FFFF",
+            "#008B8B",
+            "#B8860B",
+            "#556B2F",
+            "#8FBC8F",
+            "#483D8B",
+            "#F08080",
+            "#90EE90",
+            "#FFA07A",
+            "#20B2AA"
+          ],
           data: [
             {{ $Medan_Amplas }},
             {{ $Medan_Area }},
@@ -135,7 +181,7 @@ new Chart(document.getElementById("bar-chart"), {
       legend: { display: false },
       title: {
         display: true,
-        text: 'Jumlah UMKM berdasarkan Kecamatan',
+        text: 'Jumlah UMKM  berdasarkan Kecamatan',
         fontColor: '#000000'
       }
     }

@@ -52,7 +52,7 @@
             </div>        
         </div> -->
 
-        <div class="row mt-5 mb-5">
+        {{-- <div class="row mt-5 mb-5">
             <div class="col-md-3">
                 <p><b>Kategori</b></p>
                 <select class="form-select border-dark" aria-label="Default select example">
@@ -62,9 +62,9 @@
                     <option value="3">Papan</option>
                 </select>
             </div>
-        </div>
+        </div> --}}
 
-     
+        <br>
 
         <table id="example" class="table table-bordered border border-dark" style="width:100%;">
         <thead style="background-color: #2AA165;">
@@ -79,12 +79,14 @@
         </thead>
         <tbody>
             @if (isset($data_kecamatan))
+                <?php $count = 0 ?>
                 @foreach ($data_kecamatan as $data)
+                    <?php $count+=1 ?>
                     <tr>
-                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->id }}</td>
+                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $count }}</td>
                         <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->nama_usaha }}</td>
                         <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->kategori_umkm }}</td>
-                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ 3 }}</td>
+                        <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ count($data->produk) }}</td>
                         <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->alamat_usaha }}</td>
                         <td onClick="top.location.href='{{ route('data_umkm', ['id' => $data->id]) }}'">{{ $data->validitas_sertif_umkm }}</td>
                     </tr>
@@ -100,7 +102,7 @@
                 </tr>
             @endif
         </tbody>
-        <tfoot>
+        {{-- <tfoot>
             <tr>
                 <th>NO</th>
                 <th>Nama Usaha</th>
@@ -109,7 +111,7 @@
                 <th>Alamat</th>
                 <th>Validitas Sertifikat</th>
             </tr>
-        </tfoot>
+        </tfoot> --}}
     </table>
 
   </div>

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Http;
 class HomeController extends Controller
 {
 
-    public static $token = 'NLhgbhq30LuGPG9E9DtF';
+    public static $token = 'WG6KjhkQ3ngIdPWtcdCQ';
 
     public function home(){
         $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
@@ -161,6 +161,10 @@ class HomeController extends Controller
 
         for($i = 0; $i < count($kecamatan); $i++) 
         {
+            // $jumlah[] = array(
+            //     'kecamatan' => $kecamatan[$i]->kecamatan,
+            //     'jumlah_umkm' => $dataa[$i]['sandang'] + $dataa[$i]['pangan'] + $dataa[$i]['papan'], 
+            // );
             $jumlah[] = $dataa[$i]['sandang'] + $dataa[$i]['pangan'] + $dataa[$i]['papan'];
         }
 
