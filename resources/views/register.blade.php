@@ -6,28 +6,27 @@
       @csrf
       <div class="field">
          <input type="text" name="full_name" value="{{ old('full_name') }}" required>
-         <label>Full Name</label>
+         <label>Nama Lengkap</label>
       </div>
+      @error('full_name')
+         <div style="color:red">{{ $message }}</div>
+      @enderror
       <div class="field">
          <input type="text" name="email" value="{{ old('email') }}" required>
-         <label>Email Address</label>
+         <label>Alamat Email</label>
       </div>
+      @error('email')
+         <div style="color:red">{{ $message }}</div>
+      @enderror
       <div class="field">
          <input type="password" name="password" required>
          <label>Password</label>
       </div>
-      <div class="content">
-         <div class="checkbox">
-            <input type="checkbox" id="remember-me">
-            <label for="remember-me">Remember me</label>
-         </div>
-         <div class="pass-link">
-            <a href="#">Forgot password?</a>
-         </div>
-      </div>
+      @error('password')
+         <div style="color:red">{{ $message }}</div>
+      @enderror
       <div class="field">
-         {{-- <input type="submit" value="Login"> --}}
-         <button type="submit">Register</button>
+         <input type="submit" value="Register">
       </div>
       <div class="signup-link">
          Not a member? <a href="{{ url('/login') }}">Login</a>

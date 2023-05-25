@@ -19,14 +19,30 @@ class RegisterController extends Controller
 
     public function create(Request $request)
     {
-        $data = [
+        $data = $request->validate([
+                'full_name' => 'required|string',
+                'email' => 'required|email:rfc,dns|unique:App\Models\User,email',
+                'password' => 'required|min:8',
+        ],
+        [
+            'full_name.required' => 'Nama Lengkap dibutuhkan',
+            'email.unique' => 'Email sudah terdaftar',
+            'email.required' => 'Email dibutuhkan',
+            'email.email' => 'Email harus memiliki address',
+            'password.required' => 'Password dibutuhkan',
+            'password.min' => 'Password minimal 8 karakter',
+        ]
+        );
+
+        $dataInsert = [
             'name' => $request->full_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ];
-        User::create($data);
 
-        return redirect('/login')->with('sucess', 'Akun anda berhasil terdaftar silahkan login'); 
+        User::create($dataInsert);
+
+        return redirect('/login')->with('success', 'Akun anda berhasil terdaftar silahkan login'); 
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB; 
+use App\Models\Product;
 
 class getResource extends JsonResource
 {
@@ -22,6 +23,7 @@ class getResource extends JsonResource
     public function toArray(Request $request): array
     {
         $data = $this->resource;
+        $product = Product::where('usaha_id', $data->id)->get();
         return 
         [
             'id' => $data->id,
@@ -35,6 +37,7 @@ class getResource extends JsonResource
             'kecamatan' => $data->kecamatan->kecamatan,
             'kota' => $data->kecamatan->kota->kota,
             'contact_person' => $data->contact,
+            'produk' => $product,
         ];
     }
 }

@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::middleware('auth')->controller(ApiController::class)->group(function () {
