@@ -22,8 +22,6 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->controller(ApiController::class)->group(function () {
-    Route::get('/test', 'Test')->name('test');
-    Route::get('/test/{id}', 'getId');
     Route::get('/get/token', 'createToken');
 });
 
