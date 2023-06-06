@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-require 'D:\Pemrograman\HTML\Laravel\tubes_pi\front\TubesPI_Kel4_APIUMKM\vendor\mashape\unirest-php\src\Unirest.php';
+//  require 'D:\Pemrograman\HTML\Laravel\tubes_pi\front\TubesPI_Kel4_APIUMKM\vendor\mashape\unirest-php\src\Unirest.php';
 
 use App\Models\Umkm;
 use Illuminate\Http\Request;
@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Http;
 class HomeController extends Controller
 {
 
-    public static $token = 'WG6KjhkQ3ngIdPWtcdCQ';
+    public static $token = 'VKRaSSSRhA8BnPq07hex';
 
     public function home(){
-        $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
+        $url2 = 'http://localhost:8000/' . Self::$token . '/kecamatan';
         $res_kecamatan = Http::withoutVerifying()->get($url2);
         $kecamatan = json_decode($res_kecamatan->getBody());
 
-        $url = 'https://umkm.local.back.com/' . Self::$token . '/umkm';
+        $url = 'http://localhost:8000/' . Self::$token . '/umkm';
         // $url = "https://api.usu.ac.id/0.1/users";
         $response = Http::withoutVerifying()->get($url);
         $json = json_decode($response->getBody());
@@ -40,7 +40,7 @@ class HomeController extends Controller
     }
 
     public function tentang(){
-        $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
+        $url2 = 'http://localhost:8000/' . Self::$token . '/kecamatan';
         $res_kecamatan = Http::withoutVerifying()->get($url2);
         $kecamatan = json_decode($res_kecamatan->getBody());
 
@@ -53,7 +53,7 @@ class HomeController extends Controller
     }
 
     public function statistik($get_kecamatan){
-        $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
+        $url2 = 'http://localhost:8000/' . Self::$token . '/kecamatan';
         $res_kecamatan = Http::withoutVerifying()->get($url2);
         $kecamatan = json_decode($res_kecamatan->getBody());
 
@@ -61,7 +61,7 @@ class HomeController extends Controller
         $implode = implode(' ', $explode);
         $capitalize = ucwords($implode);
 
-        $url = 'https://umkm.local.back.com/' . Self::$token . '/umkm/kecamatan/' . $capitalize;
+        $url = 'http://localhost:8000/' . Self::$token . '/umkm/kecamatan/' . $capitalize;
         $response = Http::withoutVerifying()->get($url);
         $data = json_decode($response->getBody());
 
@@ -105,8 +105,8 @@ class HomeController extends Controller
     }
 
     public function database_umkm(){
-        $url = 'https://umkm.local.back.com/' . Self::$token . '/umkm';
-        $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
+        $url = 'http://localhost:8000/' . Self::$token . '/umkm';
+        $url2 = 'http://localhost:8000/' . Self::$token . '/kecamatan';
         $response = Http::withoutVerifying()->get($url);
         $response2 = Http::withoutVerifying()->get($url2);
         $json = json_decode($response->getBody());
@@ -198,11 +198,11 @@ class HomeController extends Controller
     }
 
     public function data_umkm($id){
-        $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
+        $url2 = 'http://localhost:8000/' . Self::$token . '/kecamatan';
         $res_kecamatan = Http::withoutVerifying()->get($url2);
         $kecamatan = json_decode($res_kecamatan->getBody());
         
-        $url = 'https://umkm.local.back.com/' . Self::$token . '/umkm/id/' . $id;
+        $url = 'http://localhost:8000/' . Self::$token . '/umkm/id/' . $id;
         $response = Http::withoutVerifying()->get($url);
         $umkm = json_decode($response->getBody());
 
@@ -213,11 +213,11 @@ class HomeController extends Controller
     }
 
     public function detail_product($nama_umkm, $product){
-        $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
+        $url2 = 'http://localhost:8000/' . Self::$token . '/kecamatan';
         $res_kecamatan = Http::withoutVerifying()->get($url2);
         $kecamatan = json_decode($res_kecamatan->getBody());
 
-        $url = 'https://umkm.local.back.com/' . Self::$token . '/umkm';
+        $url = 'http://localhost:8000/' . Self::$token . '/umkm';
         $response = Http::withoutVerifying()->get($url);
         $umkms = json_decode($response->getBody());
 
@@ -238,5 +238,10 @@ class HomeController extends Controller
             'daftar_kecamatan' => $kecamatan->data,
         ]);
     }
+
+    public function cart(){
+        return view('halaman.v_cart');
+    }
+
     
 }

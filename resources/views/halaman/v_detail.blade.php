@@ -21,6 +21,67 @@
                         <p id="keterangan">Harga : </p>
                         <p id="keterangan">IDR {{ $produk->harga }}</p>
                     </div>
+                    <div class="row mt-5">
+                          <div class="row mt-5  justify-content-center">
+                            <ul class="pagination"  >
+                                <li class="page-item"><a class="page-link border border-success" href="#"><i class="fa fa-plus text-dark"></i></a></li>
+                                <li class="page-item"><a class="page-link text-dark border border-success" href="#">Lakukan Pembelian</a></li>
+                                <li class="page-item"><a class="page-link border border-success" href="#"><i class="fa fa-minus text-dark"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                   Lakukan Pembelian
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Pembelian</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Atas nama</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Alamat</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Banyak barang yang dibeli</label>
+                                <input type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Total</label>
+                                <input type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <label for="exampleInputPassword1" class="form-label">Pembayaran</label>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">ATM</label>
+                            </div>
+                                <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">E-Wallet</label>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" href="{{route('cart')}}" class="btn btn-success">Check Out</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                        
+                    </div>
                 </div>
             </div> 
             <div class="row mt-2">

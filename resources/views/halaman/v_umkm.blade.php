@@ -62,7 +62,7 @@
                         @endif
                        
                     </div>
-                    <div class="navigation-pagination-wrapper">
+                    <!-- <div class="navigation-pagination-wrapper">
                         <div class="previous-image">
                             <span aria-hidden="true"><i class="bi bi-arrow-left-circle"></i></span>
                         </div>
@@ -70,7 +70,7 @@
                         <div class="next-image">
                             <span aria-hidden="true"><i class="bi bi-arrow-right-circle"></i></span>    
                         </div>
-                    </div>
+                    </div> -->
                     </div>
             </div>
 

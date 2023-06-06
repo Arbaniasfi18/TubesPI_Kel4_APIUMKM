@@ -21,4 +21,6 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/database-umkm', 'database_umkm')->name('database');
     Route::get('/data-umkm/{id}', 'data_umkm')->name('data_umkm');
     Route::get('/data-umkm/{nama_umkm}/{produk}', 'detail_product')->name('detail_product');
+
+    Route::get('/cart', 'cart')->name('cart');
 });
