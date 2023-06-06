@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 require 'D:\Pemrograman\HTML\Laravel\tubes_pi\front\TubesPI_Kel4_APIUMKM\vendor\mashape\unirest-php\src\Unirest.php';
 
+use App\Models\Umkm;
 use Illuminate\Http\Request;
 use Unirest\Request as Req;
 use GuzzleHttp\Client;
@@ -196,7 +197,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function data_umkn($id){
+    public function data_umkm($id){
         $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
         $res_kecamatan = Http::withoutVerifying()->get($url2);
         $kecamatan = json_decode($res_kecamatan->getBody());
@@ -207,6 +208,33 @@ class HomeController extends Controller
 
         return view('halaman.v_umkm', [
             'umkm' => $umkm->data,
+            'daftar_kecamatan' => $kecamatan->data,
+        ]);
+    }
+
+    public function detail_product($nama_umkm, $product){
+        $url2 = 'https://umkm.local.back.com/' . Self::$token . '/kecamatan';
+        $res_kecamatan = Http::withoutVerifying()->get($url2);
+        $kecamatan = json_decode($res_kecamatan->getBody());
+
+        $url = 'https://umkm.local.back.com/' . Self::$token . '/umkm';
+        $response = Http::withoutVerifying()->get($url);
+        $umkms = json_decode($response->getBody());
+
+        foreach($umkms->data as $umkm){
+            if($umkm->nama_usaha == $nama_umkm){
+                $data_umkm = $umkm;
+                foreach($umkm->produk as $produk){
+                    if($produk->nama_produk == $product){
+                        $data = $produk;
+                    }
+                }
+            }
+        }
+
+        return view('halaman.v_detail', [
+            'umkm' => $data_umkm,
+            'produk' => $data,
             'daftar_kecamatan' => $kecamatan->data,
         ]);
     }

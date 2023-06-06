@@ -19,5 +19,6 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/tentang', 'tentang')->name('tentang');
     Route::get('/statistik/{kecamatan}', 'statistik')->name('statistik');
     Route::get('/database-umkm', 'database_umkm')->name('database');
-    Route::get('/data-umkm/{id}', 'data_umkn')->name('data_umkm');
+    Route::get('/data-umkm/{id}', 'data_umkm')->name('data_umkm');
+    Route::get('/data-umkm/{nama_umkm}/{produk}', 'detail_product')->name('detail_product');
 });

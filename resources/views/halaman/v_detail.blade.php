@@ -11,23 +11,15 @@
         <div class="card-body">
             <div class="row mt-3 ms-1 mb-3">
                 <div class="col-md-4">
-                        <img src="{{ $umkm->logo_usaha }}" class="img-thumbnail">
+                        <img src="{{ $produk->gambar_produk }}" class="img-thumbnail">
                 </div>
                 <div class="col-md-7 ms-3">
                     <div class="row">
-                        <h3 id="judul"><b>{{ $umkm->nama_usaha }}</b></h3>
+                        <h3 id="judul"><b>{{ $produk->nama_produk }}</b></h3>
                     </div>
                     <div class="row">
-                        @if ($umkm->kategori_umkm == "Pangan")
-                            <p>Makanan</p>
-                        @elseif($umkm->kategori_umkm == "Sandang")
-                            <p>Pakaian</p>
-                        @else
-                            <p>Perabotan</p>
-                        @endif
-                    </div>
-                    <div class="row">
-                        <p id="keterangan">{{ $umkm->deskripsi }}</p>
+                        <p id="keterangan">Harga : </p>
+                        <p id="keterangan">IDR {{ $produk->harga }}</p>
                     </div>
                 </div>
             </div> 
@@ -40,7 +32,7 @@
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
                         <!-- 1 -->
-                        @if ($umkm->produk)
+                        {{-- @if ($umkm->produk)
                             @foreach ($umkm->produk as $produk)
                                 <div class="swiper-slide" style="margin-left: 20px;">
                                     <a href="/data-umkm/{{ $umkm->nama_usaha }}/{{ $produk->nama_produk }}">
@@ -59,7 +51,7 @@
                                     <p>No Product</p>
                                 </div>
                             </div>
-                        @endif
+                        @endif --}}
                        
                     </div>
                     <div class="navigation-pagination-wrapper">
