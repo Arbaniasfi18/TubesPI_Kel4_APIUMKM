@@ -9,7 +9,7 @@
         <div class="col-md-6">
             <ul class="list-group">
             <li class="list-group-item">Nama barang</li>
-            <li class="list-group-item"><img src="" alt=""></li>
+            <li class="list-group-item"><img style="width:30%; height:30%" src="" alt=""></li>
             <li class="list-group-item">Jumlah barang</li>
             <li class="list-group-item">Total</li>
             </ul>
